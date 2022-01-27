@@ -4,6 +4,7 @@ import copy
 
 import tcod 
 
+import color
 from engine import Engine
 from procgen import generate_dungeon
 import entity_factories
@@ -14,7 +15,7 @@ def main() -> None:
     SCREEN_HEIGHT = 50
 
     map_width = SCREEN_WIDTH
-    map_height = SCREEN_HEIGHT - 5
+    map_height = SCREEN_HEIGHT - 7  # Give room for health bars and messages
 
     room_max_size = 10
     room_min_size = 6
@@ -38,6 +39,11 @@ def main() -> None:
         engine=sterling)
     sterling.update_fov()
 
+    sterling.message_log.add_message(
+        "Hello and welcome, adventurer to yet another dungeon!", 
+        color.welcome_text
+        )
+
     
     with tcod.context.new_terminal(
         SCREEN_WIDTH, 
@@ -47,9 +53,11 @@ def main() -> None:
         vsync=True, 
     ) as context:
         root_console = tcod.Console(SCREEN_WIDTH, SCREEN_HEIGHT, order="F")
-        while True:            
-            sterling.render(console=root_console, context=context)
-            sterling.event_handler.handle_events()
+        while True:  
+            root_console.clear()
+            sterling.event_handler.on_render(console=root_console)
+            context.present(root_console)          
+            sterling.event_handler.handle_events(context)
 
 
 if __name__ == "__main__":
