@@ -18,6 +18,10 @@ class GameMap:
         self.tiles = np.full((width, height), fill_value=tile_types.wall, order="F")
         self.visible = np.full((width, height), fill_value=False, order="F")
         self.explored = np.full((width, height), fill_value=False, order="F")
+    
+    @property
+    def gamemap(self) -> GameMap:
+        return self
 
     # Iterate over this map's living actors
     @property
