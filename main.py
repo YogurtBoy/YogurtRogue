@@ -26,7 +26,7 @@ def main() -> None:
     max_items_per_room = 2
 
     tileset = tcod.tileset.load_tilesheet("dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD)
-
+ 
     player = copy.deepcopy(entity_factories.player)
 
     sterling = Engine(player=player)
