@@ -10,21 +10,24 @@ player = Actor(char="@",
                name="Player", 
                ai_cls=HostileEnemy,
                fighter=Fighter(hp=30, defense=2, power=5),
-               inventory=Inventory(capacity=26))
+               inventory=Inventory(capacity=26),
+               level = Level(level_up_base=200))
 
 orc = Actor(char="o", 
             color=(63, 127, 63), 
             name="Orc", 
             ai_cls=HostileEnemy,
             fighter=Fighter(hp=10, defense=0, power=3),
-            inventory=Inventory(capacity=0))
+            inventory=Inventory(capacity=0), 
+            level = Level(xp_given = 35))
 
 troll = Actor(char="T", 
               color=(0, 127, 0), 
               name="Troll", 
               ai_cls=HostileEnemy,
               fighter=Fighter(hp=16, defense=1, power=4), 
-              inventory=Inventory(capacity=0))
+              inventory=Inventory(capacity=0), 
+              level = Level(xp_given = 35))
 
 health_potion = Item(char = "!", 
                      color = (127, 0, 255), 
